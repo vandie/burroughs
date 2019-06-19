@@ -1,0 +1,13 @@
+{
+  "name": "burroughs",
+  "version": "1.0.0",
+  "description": "A small command line utility to help a small fictional company calculate the dates on which they should pay their sales staff",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "dayjs": "^1.8.14"
+  },
+  "scripts": {
+    "start": "clear && node index.js"
+  }
+}
