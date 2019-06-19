@@ -23,3 +23,8 @@ This project does make use of `dayJS` to make date-time manipulation a bit simpl
 
 ## Setup
 All requirements can be installed via NPM or YARN using `npm install` or `yarn` from the project directory. To run the program, simply run the comman `npm start` or `yarn start`.
+
+## Notes
+- In an attempt to ensure the code is as simple to follow as it can be, all code is fully commented.
+- Getting the CSV will not include dates within the current month if they have already past, it will however include them if they are the current date or later.
+- Pay Days and Bonus Days are in sepearte coulmns. This is due to how I read the task.
