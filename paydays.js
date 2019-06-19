@@ -7,7 +7,7 @@ class Paydays {
   }
 
   /**
-   * Returns a dayjs object for a given number of paydays in the future
+   * Returns a dayjs object for a given number of paydays after this months
    * @param {number} n The number of months ahead of the current month. Current month is equal to 0
    */
   getNthPayDayObject(n = 0){
@@ -27,7 +27,7 @@ class Paydays {
   }
 
   /**
-   * Returns a dayjs object for a given number of bonus days in the future
+   * Returns a dayjs object for a given number of bonus days after this months
    * @param {number} n The number of months ahead of the current month. Current month is equal to 0
    */
   getNthBonusDayObject(n=0){
@@ -37,6 +37,7 @@ class Paydays {
         bonusDay = bonusDay.add(1, 'day'); //add a day
       }
     }
+
     return bonusDay;
   }
 
@@ -49,11 +50,21 @@ class Paydays {
   }
 
   /**
-   * Returns a csv formatted string of all pay and bonus days in the next 12 months
+   * Returns a csv formatted string of all pay and bonus days in the next 12 months.
    */
   nextYearAsCSV(){
     let paydays = new Array(12).fill('').map((v,i) => this.getNthPayDay(i)); //create an empty array of fixed length '12' and fill it with the payday string for the correct indexes
     let bonusdays = new Array(12).fill('').map((v,i) => this.getNthBonusDay(i)); //create an empty array of fixed length '12' and fill it with the bonusday string for the correct indexes
+
+    if(this.getNthPayDayObject().isBefore(this.startdate)){ //if the first pay day in the array if before today
+      paydays.shift(); //remove the first pay day in the array
+      paydays.push(this.getNthPayDay(12)); //add an extra pay day to keep the array length at 12
+    }
+
+    if(this.getNthBonusDayObject().isBefore(this.startdate)){ //if the first bonus day in the array if before today
+      bonusdays.shift(); //remove the first bonus day in the array
+      bonusdays.push(this.getNthBonusDay(12)); //add an extra bonus day to keep the array length at 12
+    }
     
     let csv = 'Pay Days, Bonus Days'; //start the string with the 2 csv column titles
     for(let i = 0; i < 12; i++){ //repeat 12 times
