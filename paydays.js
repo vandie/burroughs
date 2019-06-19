@@ -56,12 +56,12 @@ class Paydays {
     let paydays = new Array(12).fill('').map((v,i) => this.getNthPayDay(i)); //create an empty array of fixed length '12' and fill it with the payday string for the correct indexes
     let bonusdays = new Array(12).fill('').map((v,i) => this.getNthBonusDay(i)); //create an empty array of fixed length '12' and fill it with the bonusday string for the correct indexes
 
-    if(this.getNthPayDayObject().isBefore(this.startdate)){ //if the first pay day in the array if before today
+    if(this.getNthPayDayObject().isBefore(this.startdate)){ //if the first pay day in the array is before today
       paydays.shift(); //remove the first pay day in the array
       paydays.push(this.getNthPayDay(12)); //add an extra pay day to keep the array length at 12
     }
 
-    if(this.getNthBonusDayObject().isBefore(this.startdate)){ //if the first bonus day in the array if before today
+    if(this.getNthBonusDayObject().isBefore(this.startdate)){ //if the first bonus day in the array is before today
       bonusdays.shift(); //remove the first bonus day in the array
       bonusdays.push(this.getNthBonusDay(12)); //add an extra bonus day to keep the array length at 12
     }
